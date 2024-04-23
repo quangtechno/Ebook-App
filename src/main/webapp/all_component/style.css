@@ -1,0 +1,10 @@
+h1 {
+	color:red;
+}
+.navbar .nav-item:hover,.nav-item.active .nav-link:hover {
+	background-color :#999999;
+	color: white;
+	border-radius: 20px;
+}
+
+	
