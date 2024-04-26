@@ -14,31 +14,27 @@
 		name : "Những ý tưởng khoa học công nghệ thời đại 4.0",
 		author : "Nhiều Tác Giả",
 		image : "image/3.png",
-	},
-	{
+	}, {
 		name : "Quốc Sử Di Biên",
 		author : "Nhà nghiên cứu. Phan Thúc Trực",
 		image : "image/4.png",
-	},
-	{
+	}, {
 		name : "Muôn Kiếp Nhân Sinh 3",
 		author : "Nguyên Phong",
 		image : "image/5.png",
-	},
-	{
+	}, {
 		name : "Teamwork 101-làm việc nhóm 101",
 		author : "John Maxwell",
 		image : "image/6.png",
-	},
-	{
+	}, {
 		name : "Teamwork 101-làm việc nhóm 101",
 		author : "John Maxwell",
 		image : "image/6.png",
-	},{
+	}, {
 		name : "Teamwork 101-làm việc nhóm 101",
 		author : "John Maxwell",
 		image : "image/6.png",
-	},];
+	}, ];
 	document.addEventListener("DOMContentLoaded", function() {
 		bookArr.forEach(function addBook(book) {
 			var main = document.getElementById("main");
