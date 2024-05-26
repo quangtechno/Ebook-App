@@ -10,16 +10,18 @@ public class User {
 public void setAddress(String address) {
 	this.address = address;
 }
-public String getLandmark() {
-	return landmark;
+
+public String getProvince() {
+	return province;
 }
-public void setLandmark(String landmark) {
-	this.landmark = landmark;
+public void setProvince(String province) {
+	this.province = province;
 }
+
 private String phone;
   private String password;	
   private String address;
-  private String landmark;
+  private String province;
   private String city;
   private String state;
   private String zip;
@@ -79,9 +81,10 @@ public void setZip(String zip) {
 @Override
 public String toString() {
 	return "User [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", password=" + password
-			+ ", address=" + address + ", landmark=" + landmark + ", city=" + city + ", state=" + state + ", zip=" + zip
+			+ ", address=" + address + ", province=" + province + ", city=" + city + ", state=" + state + ", zip=" + zip
 			+ "]";
 }
+
 
 
   
