@@ -29,7 +29,6 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		}else {
 			User user=dao.login(email, password);
 			if(user!=null) {
-				
 				session.setAttribute("userObj", user);
 				resp.sendRedirect("index.jsp");
 			}else {
@@ -37,7 +36,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 				resp.sendRedirect("login.jsp");
 			}
 		}
-		System.out.println(email+" "+password);		
+		//System.out.println(email+" "+password);		
 	} catch (Exception e) {
 	e.printStackTrace();
 	}

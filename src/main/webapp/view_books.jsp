@@ -15,7 +15,7 @@
 
 	<%@include file="all_component/navbar.jsp"%>
 	<%
-	int id = Integer.parseInt(request.getParameter("Id"));
+	int id = Integer.parseInt(request.getParameter("id"));
 	BookDAOImpl dao = new BookDAOImpl(DBConnect.getCon());
 	BookDtls b = dao.getBookById(id);
 	%>
@@ -54,7 +54,7 @@
 				<div class="row text-center p-3 justify-content-center">
 					<a href="cart?bid=<%=b.getBookId()%>&&uid=${userObj.id}"
 						class="btn btn-primary mx-2" 
-						id="toastr>Add Cart</a><a
+						id="toastr">Add Cart</a><a
 						class="btn btn-outline-success mx-2"><%=b.getPrice()%><i
 						class="fa-solid fa-money-bill"></i></a> <a href="#"
 						class="btn btn-primary mx-2">Back to Home Page</a>

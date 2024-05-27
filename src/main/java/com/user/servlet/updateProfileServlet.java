@@ -26,7 +26,7 @@ public class updateProfileServlet extends HttpServlet {
 			String email = req.getParameter("email");
 			String phone = req.getParameter("phone");
 			String password = req.getParameter("password");
-			String Checkpassword = req.getParameter("Checkpassword");
+
 			User user = new User();
 			user.setId(id);
 			user.setName(name);
@@ -38,16 +38,11 @@ public class updateProfileServlet extends HttpServlet {
 			boolean condition = dao.checkPassword(id , password);
 			System.out.println(condition);
 			System.out.println(user.toString());
-			if (!password.equals(Checkpassword)) {
-				condition = false;
-				System.out.println(password+" "+Checkpassword);
-				session.setAttribute("faildedMsg","Your Password is Incorrect");
-			}
 			if (condition) {
 				boolean condition2=dao.updateProfiles(user);
 				if(condition2) {
 					session.setAttribute("succMsg","Profile Update Successfully");
-					
+					session.setAttribute("userObj", user);
 				}else {
 					session.setAttribute("faildedMsg","Something Wrong On Server");
 					

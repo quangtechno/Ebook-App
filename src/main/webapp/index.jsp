@@ -56,7 +56,6 @@
 	%>
 	<%
 	User user = (User) session.getAttribute("userObj");
-
 	%>
 	<div class="container text-center justify-content-center">
 		<h2 class="mt-3">IT Books</h2>
