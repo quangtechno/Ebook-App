@@ -352,7 +352,9 @@ public class BookDAOImpl implements BookDAO {
 		try {
 			String query = "select * from book_dtls where bookname like? or author like? or bookCategory like?";
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setString(1, ch);
+			ps.setString(1, "%"+ch+"%");
+			ps.setString(2, "%"+ch+"%");
+			ps.setString(3, "%"+ch+"%");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				BookDtls b = new BookDtls();

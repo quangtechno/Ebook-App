@@ -105,7 +105,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean checkPassword(int id, String ps) {
-		boolean condition = true;
+		boolean condition = false;
 		try {
 			String query = "select * from user where id=? and password=?";
 			PreparedStatement pst = con.prepareStatement(query);
@@ -113,7 +113,7 @@ public class UserDAOImpl implements UserDAO {
 			pst.setString(2, ps);
 			ResultSet rs=pst.executeQuery();
 			while(rs.next()) {
-				condition=false;	
+				condition=true;	
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

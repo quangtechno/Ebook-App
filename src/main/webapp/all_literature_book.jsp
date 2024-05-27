@@ -17,7 +17,7 @@
 	<%@include file="all_component/navbar.jsp"%>
 	<div class="container text-center ">
 		<h2 class="mt-3">
-			IT Books
+			Literature Books
 			</h3>
 			<div class="d-flex flex-row flex-wrap">
 				<%

@@ -53,14 +53,6 @@
 									id="exampleInputPassword1" placeholder="Input password"
 									name="password"/>
 							</div>
-							<div class="mb-3">
-								<label for="registerInputPassword1Again" class="form-label">Password</label>
-								<input required="required" type="password" class="form-control"
-									name="Checkpassword" id="registerInputPassword1Again"
-									placeholder="Input password again"/>
-
-							</div>
-
 							<button type="submit" class="btn btn-primary" onPress="checkVal">Update</button>
 						</form>
 					</div>
