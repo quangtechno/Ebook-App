@@ -64,6 +64,7 @@
 			BookDAOImpl dao = new BookDAOImpl(DBConnect.getCon());
 			List<BookDtls> listIT = dao.getITBooks();
 			for (BookDtls b : listIT) {
+				
 			%>
 			<div class="card m-3 text-center " style="width: 18rem;">
 				<div class="card-body text-center overflow-hidden text-truncate">

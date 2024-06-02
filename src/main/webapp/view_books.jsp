@@ -15,11 +15,13 @@
 
 	<%@include file="all_component/navbar.jsp"%>
 	<%
-	int id = Integer.parseInt(request.getParameter("id"));
+	int id = Integer.parseInt(request.getParameter("Id"));
 	BookDAOImpl dao = new BookDAOImpl(DBConnect.getCon());
 	BookDtls b = dao.getBookById(id);
 	%>
+
 	<div class="row">
+
 		<div class="col-md-6 text-center">
 			<img src="image/<%=b.getPhotoName()%>"
 				style="height: 400px; width: 30 0px"> <br>
@@ -52,10 +54,14 @@
 					<p>Free Shipping</P>
 				</div>
 				<div class="row text-center p-3 justify-content-center">
-					<a href="cart?bid=<%=b.getBookId()%>&&uid=${userObj.id}"
-						class="btn btn-primary mx-2" 
-						id="toastr">Add Cart</a><a
-						class="btn btn-outline-success mx-2"><%=b.getPrice()%><i
+					<c:if test="${ empty userObj}">
+						<a href="#" class="btn btn-primary mx-2" id="toastr">Add Cart</a>
+					</c:if>
+					<c:if test="${not empty userObj}">
+						<a href="cart?bid=<%=b.getBookId()%>&&uid=${userObj.id}"
+							class="btn btn-primary mx-2" id="toastr">Add Cart</a>
+					</c:if>
+					<a class="btn btn-outline-success mx-2"><%=b.getPrice()%><i
 						class="fa-solid fa-money-bill"></i></a> <a href="#"
 						class="btn btn-primary mx-2">Back to Home Page</a>
 				</div>

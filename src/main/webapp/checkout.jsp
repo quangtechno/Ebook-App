@@ -12,6 +12,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Cart Page</title>
+
+	<!-- Styles -->
+	
 <%@include file="all_component/allCss.jsp"%>
 </head>
 <body>
@@ -19,14 +22,19 @@
 	<c:if test="${ empty userObj}">
 		<c:redirect url="login.jsp"></c:redirect>
 	</c:if>
-	<c:if test="${not empty succMsg }">
-		<div class="alert alert-success" role="alert">${succMsg}</div>
-		<c:remove var="succMsg" scope="session" />
-	</c:if>
-	<c:if test="${not empty failedMsg }">
-		<div class="alert alert-danger" role="alert">${failedMsg}</div>
-		<c:remove var="succMsg" scope="session" />
-	</c:if>
+<%-- 	<c:if test="${not empty succMsg }"> --%>
+<%-- 		<div class="alert alert-success" role="alert">${succMsg}</div> --%>
+<%-- 		<c:remove var="succMsg" scope="session" /> --%>
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${not empty failedMsg }"> --%>
+<%-- 		<div class="alert alert-danger" role="alert">${failedMsg}</div> --%>
+<%-- 		<c:remove var="succMsg" scope="session" /> --%>
+<%-- 	</c:if> --%>
+	<% 
+    String toastType = (String) request.getAttribute("toastType");
+    String toastMessage = (String) request.getAttribute("toastMessage");
+    System.out.println(toastType + " " + toastMessage);
+%>
 
 
 	<div class="container">
@@ -43,7 +51,6 @@
 									<th scope="col">Book Name</th>
 									<th scope="col">Author</th>
 									<th scope="col">Price</th>
-									<th scope="col">Action</th>
 								</tr>
 							</thead>
 
@@ -98,7 +105,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Phone Number</label> <input
-										type="Number" class="form-control" id="inputEmail4"
+										type="Text" class="form-control" id="inputEmail4"
 										value="${userObj.phone}" name="uPhone" required/>
 								</div>
 								<div class="form-group col-md-6">
@@ -119,7 +126,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Pin Code</label> <input
-										type="number" class="form-control" id="inputPassword4" name="uPin"
+										type="text" class="form-control" id="inputPassword4" name="uPin"
 										>
 								</div>
 								<div class="form-group">
@@ -130,7 +137,7 @@
 								</div>
 							</div>
 							<div>
-								<button class="btn btn-warning">Order Now</button>
+								<button class="btn btn-warning" type="submit" title="Order Now"><text>Order Now</text></table></button>
 								<a href="index.jsp" class="btn btn-success">Back to Home
 									Page</a>
 							</div>
@@ -140,5 +147,37 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+$(document).ready(function() {
+	toastr.options = {
+		'closeButton': true,
+		'debug': false,
+		'newestOnTop': false,
+		'progressBar': false,
+		'positionClass': 'toast-top-right',
+		'preventDuplicates': false,
+		'showDuration': '1000',
+		'hideDuration': '1000',
+		'timeOut': '5000',
+		'extendedTimeOut': '1000',
+		'showEasing': 'swing',
+		'hideEasing': 'linear',
+		'showMethod': 'fadeIn',
+		'hideMethod': 'fadeOut',
+	}
+});
+function isEmptyOrNullOrWhitespace(text) {
+    return text === null || text === undefined || text.trim() === "";
+}
+var toastType = '<%= request.getAttribute("toastType") %>';
+var toastMessage = '<%= request.getAttribute("toastMessage") %>';
+if (!isEmptyOrNullOrWhitespace(toastMessage)) {
+if (toastType=='Success') {
+	toastr.success(toastMessage);
+}else if (toastType=='Error') {
+	toastr.error(toastMessage);
+}
+}
+</script>
 </body>
 </html>
