@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
-	<div style="background-color: #f0f2f2">
+	<div style="background-color: #f0f2f2; min-height: 400px">
 		<h3 class='text-center'>Hello Admin</h3>
 		<c:if test="${empty userObj}">
 			<c:redirect url="../login.jsp" />

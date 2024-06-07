@@ -37,12 +37,12 @@ public class CartServlet extends HttpServlet {
           if(condition) {
         	  req.setAttribute("toastType", "Success");
               req.setAttribute("toastMessage", "Add cart Successfully");
-              System.out.println("must add");
+            
           
           }else{
         	  req.setAttribute("toastType", "Error");
               req.setAttribute("toastMessage", "Not Added To Cart");
-              System.out.println("must add");
+     
           }
           RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
           dispatcher.forward(req, resp);

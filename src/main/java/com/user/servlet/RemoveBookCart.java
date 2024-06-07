@@ -2,6 +2,7 @@ package com.user.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,12 +29,14 @@ public class RemoveBookCart extends HttpServlet{
 		HttpSession session=req.getSession();
 		
 		if(condition) {
-			session.setAttribute("succMsg", "Book removed from Cart");
-			resp.sendRedirect("checkout.jsp");
+			  req.setAttribute("toastType", "Success");
+              req.setAttribute("toastMessage", "removed Successfully");
 		}else {
-			session.setAttribute("failedMsg", "some thing wrong on servet");
-			resp.sendRedirect("checkout.jsp");
+			  req.setAttribute("toastType", "Error");
+              req.setAttribute("toastMessage", "cant not remove To Cart");
 		}
+        RequestDispatcher dispatcher = req.getRequestDispatcher("checkout.jsp");
+        dispatcher.forward(req, resp);
 	}
 
 }

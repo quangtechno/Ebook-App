@@ -25,6 +25,7 @@ public class OrderServlet extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			resp.setContentType("text/html; charset=UTF-8");
 			resp.setCharacterEncoding("UTF-8");
+			//user id
 			int id = Integer.parseInt(req.getParameter("id"));
 			HttpSession session=req.getSession();
 			String name = req.getParameter("uName");
@@ -40,14 +41,11 @@ public class OrderServlet extends HttpServlet {
 			CartDAOImpl dao = new CartDAOImpl(DBConnect.getCon());
 			dao.getBookByUserId(0);
 			List<Cart> blist = dao.getBookByUserId(id);
-			
-			
-		
+
 			if(blist.isEmpty()) {
 				resp.sendRedirect("checkout.jsp");
 			}else {
 				Book_Order o=null;
-				
 				ArrayList<Book_Order> orderList = new ArrayList<Book_Order>();
 				BookOrderDAOImpl dao2 = new BookOrderDAOImpl(DBConnect.getCon());
 				int i = dao2.getOrderNo();

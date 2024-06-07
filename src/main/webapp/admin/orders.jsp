@@ -21,8 +21,8 @@
 	<div style="background-color: #f0f2f2">
 		<h3 class='text-center'>Hello Admin</h3>
 		<table class="table">
-			<thead class="btn-primary">
-				<tr class="text-primary">
+			<thead class="text-primary">
+				<tr >
 					<th scope="col">Order Id</th>
 					<th scope="col">Name</th>
 					<th scope="col">Email</th>
