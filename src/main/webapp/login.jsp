@@ -40,11 +40,7 @@
 									name='password' id="exampleInputPassword1"
 									placeholder="Input password">
 							</div>
-							<div class="mb-3 form-check">
-								<input type="checkbox" class="form-check-input"
-									id="exampleCheck1"> <label class="form-check-label"
-									for="exampleCheck1">Check me out</label>
-							</div>
+							
 							<div class="text-center">
 								<button type="submit" class="btn btn-success">Login</button>
 								<a href="register.jsp">Register</a>

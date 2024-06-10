@@ -81,5 +81,21 @@ public CartDAOImpl(Connection con) {
 	}
 	return condition;
 	}
+	@Override
+	public boolean deleteCart(int uid) {
+		boolean condition=false;
+		try {
+			String query="delete from cart where uid=?;";
+			PreparedStatement ps=con.prepareStatement(query);	
+			ps.setInt(1, uid);
+			int row=ps.executeUpdate();
+			if(row!=0) {
+				condition=true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return condition;
+	}
 
 }

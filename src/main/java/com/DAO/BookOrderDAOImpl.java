@@ -48,7 +48,6 @@ public boolean saveOrder(List<Book_Order> blist) {
 			ps.setString(9,b.getPaymentMethod());
 			ps.addBatch();
 		}
-		
 		int[]count=ps.executeBatch();
 		con.commit();
 		condition=true;
@@ -93,7 +92,6 @@ public List<Book_Order> getBook() {
 	try {
 		String query="select * from book_order";
 		PreparedStatement ps=con.prepareStatement(query);
-	
 		ResultSet rs=ps.executeQuery();
 		while(rs.next()) {
 			o=new Book_Order();

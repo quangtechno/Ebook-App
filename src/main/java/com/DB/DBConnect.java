@@ -10,7 +10,6 @@ public class DBConnect {
 	 try {
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 	 con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ebook-app", "root", "mysql");
-		System.out.println(con);
 	} catch (Exception e) {
 		System.out.println("error here");
 		e.printStackTrace();

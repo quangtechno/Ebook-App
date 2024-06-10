@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.DeclareRoles;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +15,14 @@ import javax.servlet.http.HttpSession;
 
 import com.DAO.BookOrderDAOImpl;
 import com.DAO.CartDAOImpl;
+import com.DAO.UserDAOImpl;
 import com.DB.DBConnect;
 import com.entity.Book_Order;
 import com.entity.Cart;
+import com.entity.User;
 
 @WebServlet("/order")
+@DeclareRoles({"USER"})
 public class OrderServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,14 +37,29 @@ public class OrderServlet extends HttpServlet {
 			String email = req.getParameter("uEmail");
 			String phone = req.getParameter("uPhone");
 			String address = req.getParameter("uAddress");
+			String password=req.getParameter("uPassword");
 			String city = req.getParameter("uCity");
 			String province = req.getParameter("uProvince");
 			String paymentMethod = req.getParameter("uSelect");
 			String pincode = req.getParameter("uPin");
 			String fulladd = address + "," + city + "," + province + "," + pincode;
-			System.out.println(fulladd);
+			//System.out.println(fulladd);
 			CartDAOImpl dao = new CartDAOImpl(DBConnect.getCon());
-			dao.getBookByUserId(0);
+			UserDAOImpl daoUser=new UserDAOImpl(DBConnect.getCon());
+			System.out.println(email+" "+password);
+			//User temp=daoUser.login(email, password);
+			User temp=(User) session.getAttribute("userObj");
+
+			temp.setAddress(address);
+			temp.setCity(city);
+			temp.setProvince(province);
+			temp.setZip(pincode);
+			daoUser.updateProfilesOrder(temp);
+			System.out.println(temp.toString());
+			
+			
+			
+//			dao.getBookByUserId(0);
 			List<Cart> blist = dao.getBookByUserId(id);
 
 			if(blist.isEmpty()) {
@@ -60,24 +80,29 @@ public class OrderServlet extends HttpServlet {
 					o.setAuthor(c.getAuthor());
 					o.setPrice(String.valueOf(c.getPrice()));
 					o.setPaymentMethod(paymentMethod);
-					// System.out.println(o.toString());
+					 System.out.println(o.toString());
 					orderList.add(o);
 					i++;
 				}
+				dao.deleteCart(id);
+				
 				boolean condition = dao2.saveOrder(orderList);
-				if (condition) {
-					 session.setAttribute("succMsg",	"Order Success");
-					System.out.println("Order success");
-					resp.sendRedirect("checkout.jsp");
-				} else {
-					 session.setAttribute("failedMsg",	"Order failed");
-					System.out.println("Order failed");
-					resp.sendRedirect("checkout.jsp");
-				}
+				if(condition) {
+		        	  session.setAttribute("toastType", "Success");
+		        	  session.setAttribute("toastMessage", "Order Successfully");
+		        	  resp.sendRedirect("checkout.jsp");
+		    
+		          }else{
+		        	  session.setAttribute("toastType", "Error");
+		        	  session.setAttribute("toastMessage", "Error");
+		        	  resp.sendRedirect("checkout.jsp");
+		          }
+				
+				
 			}
 		
 		} catch (Exception e) {
-
+          e.printStackTrace();
 		}
 	}
 

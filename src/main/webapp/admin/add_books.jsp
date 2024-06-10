@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/all_component/allCss.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page isELIgnored="false" %>
@@ -38,8 +38,8 @@
 						</div>
 						<div class="mb-3">
 							<label for="exampleFormControlInput1" class="form-label">Price*</label>
-							<input type="number" class="form-control"
-								id="exampleFormControlInput1" name="price" required="required"/>
+							<input type="number" class="form-control" 
+								id="exampleFormControlInput1" name="price" required="required" min="0"/>
 						</div>
 						<div class="mb-3">
 							<label for="inputState">Book Categories</label> <select

@@ -74,7 +74,7 @@ a {
 							<div class="text-warning">
 								<i class="fa-solid fa-location-dot fa-2x"></i>
 							</div>
-							<h3>Your Address</h3>
+							<h3>User s' Profile</h3>
 						</div>
 					</div>
 				</a>

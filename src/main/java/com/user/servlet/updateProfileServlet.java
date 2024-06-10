@@ -1,6 +1,7 @@
 package com.user.servlet;
 import java.io.IOException;
 
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import com.DB.DBConnect;
 import com.entity.User;
 
 @WebServlet("/update_profile")
+@DeclareRoles({"USER"})
 public class updateProfileServlet extends HttpServlet {
 
 	@Override

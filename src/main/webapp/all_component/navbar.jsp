@@ -21,7 +21,7 @@
 			<c:if test="${not empty userObj}">
 				<a href="checkout.jsp" class="mt-2"><i
 					class="fa-solid fa-cart-shopping fa-2x"></i></a>
-				<a class="btn btn-success"><i class="fa-regular fa-user"></i>${userObj.name}</a>
+				<a href="setting.jsp" class="btn btn-success"><i class="fa-regular fa-user"></i>${userObj.name}</a>
 				<a href="../logout" class="btn btn-primary" data-toggle="modal"
 					data-target="#exampleModal"><i
 					class="fa-solid fa-right-from-bracket"></i>Logout</a>
@@ -88,9 +88,9 @@
 					type="submit"> <i class="fa fa-cog"></i>Setting
 				</a>
 			</c:if>
-			<a class="btn btn-outline-dark my-2 my-sm-0" type="submit"> <i
-				class="fa fa-phone"></i>Contact us
-			</a>
+<!-- 			<a class="btn btn-outline-dark my-2 my-sm-0" type="submit"> <i -->
+<!-- 				class="fa fa-phone"></i>Contact us -->
+<!-- 			</a> -->
 		</form>
 	</div>
 </nav>

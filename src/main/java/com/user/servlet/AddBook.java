@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -20,12 +21,16 @@ import com.DB.DBConnect;
 import com.entity.BookDtls;
 
 @WebServlet("/add_books_user")
+@DeclareRoles({"USER"})
 @MultipartConfig
 public class AddBook extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
+		req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        try {
 			String bookname=req.getParameter("bName");
 			
 			String author=req.getParameter("author");

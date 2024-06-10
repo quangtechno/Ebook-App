@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@include file="all_component/navbar.jsp" %>
-<%@include file="all_component/navbar.jsp"%>
+
 	<c:if test="${ empty userObj}">
 		<c:redirect url="login.jsp"></c:redirect>
 	</c:if>

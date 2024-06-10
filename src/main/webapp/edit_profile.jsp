@@ -34,7 +34,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="registerInputEmail1" class="form-label">Email
-									address</label> <input required="required" type="email"value="${userObj.email}"
+										</label> <input required="required" type="email"value="${userObj.email}"
 									class="form-control" id="exampleInputEmail1"
 									aria-describedby="emailHelp" placeholder="Enter email"
 									name="email"/>

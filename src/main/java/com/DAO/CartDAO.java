@@ -10,4 +10,5 @@ public boolean addCart(Cart c);
 public List<Cart> getBookByUserId(int userId);
 
 public boolean deleteBook(int bid, int uid, int cid);
+public boolean deleteCart(int uid);
 }

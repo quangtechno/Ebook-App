@@ -2,6 +2,7 @@ package com.user.servlet;
 
 import java.io.IOException;
 
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import com.entity.BookDtls;
 import com.entity.Cart;
 
 @WebServlet("/cart")
+@DeclareRoles({"USER"})
 public class CartServlet extends HttpServlet {
 
 	@Override
@@ -37,8 +39,7 @@ public class CartServlet extends HttpServlet {
           if(condition) {
         	  req.setAttribute("toastType", "Success");
               req.setAttribute("toastMessage", "Add cart Successfully");
-            
-          
+    
           }else{
         	  req.setAttribute("toastType", "Error");
               req.setAttribute("toastMessage", "Not Added To Cart");

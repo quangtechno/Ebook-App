@@ -8,4 +8,6 @@ public boolean checkExist(User us);
 public User login(String email,String password);
 public boolean  checkPassword(int id, String ps);
 boolean updateProfiles(User user);
+boolean updateProfilesOrder(User user);
+
 }
