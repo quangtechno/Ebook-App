@@ -8,17 +8,13 @@
 			<h3 style="color:#228B22"><i class="fa fa-book"></i>EBook</h3>
 		</div>
 		<div class="col-md-6">
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+	
 			
 	
 		</div>
 		<div class="col-md-3">
 	
-			<a href="login.jsp" class="btn btn-success"><i class="fa-regular fa-user"></i>${userObj.name}</a>
+			<a href="#" class="btn btn-success"><i class="fa-regular fa-user"></i>${userObj.name}</a>
 			 <a href="#"
 					class="btn btn-primary"data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
 				
@@ -63,10 +59,10 @@
 			</a></li>
 		
 		</ul>
-<form class="form-inline my-2 my-lg-0">
+<!-- <form class="form-inline my-2 my-lg-0"> -->
 				
-				<button class="btn btn-outline-dark my-2 my-sm-0 m-2" type="submit"><i class="fa fa-cog" ></i>Setting</button>
-				<button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-phone"></i>Contact us</button>
-			</form>
+<!-- 				<button class="btn btn-outline-dark my-2 my-sm-0 m-2" type="submit"><i class="fa fa-cog" ></i>Setting</button> -->
+<!-- 				<button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa fa-phone"></i>Contact us</button> -->
+<!-- 			</form> -->
 	</div>
 </nav>

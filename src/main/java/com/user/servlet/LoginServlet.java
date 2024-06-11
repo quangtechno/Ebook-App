@@ -24,12 +24,15 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		if("admin@gmail.com".equals(email)&&"admin".equals(password)) {
 			User user=new User();
 			user.setName("Admin");
+			user.setEmail("admin@gmail.com");
 			session.setAttribute("userObj", user);
+			  session.setAttribute("userRole", "ADMIN");
 			resp.sendRedirect("admin/adminHome.jsp");
 		}else {
 			User user=dao.login(email, password);
 			if(user!=null) {
 				session.setAttribute("userObj", user);
+				session.setAttribute("userRole", "ADMIN");
 				resp.sendRedirect("index.jsp");
 			}else {
 				session.setAttribute("faildedMsg", "invalid email or password");

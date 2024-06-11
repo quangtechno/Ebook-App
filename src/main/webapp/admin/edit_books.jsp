@@ -1,7 +1,7 @@
 <%@page import="com.DB.DBConnect"%>
 <%@page import="com.DAO.BookDAOImpl"%>
 <%@page import="com.entity.BookDtls"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/all_component/allCss.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,7 +46,7 @@
 								<label for="exampleFormControlInput1" class="form-label">Price*</label>
 								<input type="number" class="form-control"
 									id="exampleFormControlInput1" name="price" required="required"
-									value="<%=b.getPrice()%>" />
+									value="<%=b.getPrice()%> min="0"" />
 							</div>
 							<div class="mb-3">
 								<label for="inputState">Book Status</label> <select

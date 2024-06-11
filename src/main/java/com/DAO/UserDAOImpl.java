@@ -89,17 +89,17 @@ public class UserDAOImpl implements UserDAO {
 				user.setId(rs.getInt(1));
 				user.setName(rs.getString(2));
 				user.setEmail(rs.getString(3));
-				user.setPhone(rs.getString(4));
-				user.setPassword(rs.getString(5));
+				user.setPassword(rs.getString(4));
+				user.setPhone(rs.getString(5));
 				user.setAddress(rs.getString(6));
 				user.setCity(rs.getString(7));
-				user.setState(rs.getString(8));
+				user.setProvince(rs.getString(8));
 				user.setZip(rs.getString(9));
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return user;
 	}
 
@@ -131,6 +131,28 @@ public class UserDAOImpl implements UserDAO {
 			ps.setString(2, user.getEmail());
 			ps.setString(3, user.getPhone());
 			ps.setInt(4, user.getId());
+
+			int i = ps.executeUpdate();
+			if (i == 1) {
+				condition = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return condition;
+	}
+
+	@Override
+	public boolean updateProfilesOrder(User user) {
+		boolean condition = false;
+		try {
+			String query = "update user set address= ?,city= ?,province= ?,zip=? where id = ? ";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, user.getAddress());
+			ps.setString(2, user.getCity());
+			ps.setString(3, user.getProvince());
+			ps.setString(4, user.getZip());
+			ps.setInt(5, user.getId());
 
 			int i = ps.executeUpdate();
 			if (i == 1) {

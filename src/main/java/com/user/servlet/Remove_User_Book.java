@@ -2,6 +2,7 @@ package com.user.servlet;
 
 import java.io.IOException;
 
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import com.DAO.BookDAOImpl;
 import com.DB.DBConnect;
 
 @WebServlet("/remove_user_book")
+@DeclareRoles({"USER"})
 public class Remove_User_Book extends HttpServlet {
 
 	@Override

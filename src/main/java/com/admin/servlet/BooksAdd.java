@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 
+import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +23,16 @@ import com.entity.BookDtls;
 
 
 @WebServlet("/add_books")
+@DeclareRoles({"ADMIN"})
+
 @MultipartConfig
 public class BooksAdd extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
 		try {
 			String bookname=req.getParameter("bName");
 			System.out.println(bookname);

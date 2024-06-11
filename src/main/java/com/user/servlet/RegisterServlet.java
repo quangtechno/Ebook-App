@@ -2,7 +2,8 @@ package com.user.servlet;
 
 import java.io.IOException;
 
-
+import javax.annotation.security.DeclareRoles;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import com.DB.DBConnect;
 import com.entity.User;
 
 @WebServlet("/register")
+@DeclareRoles({"USER"})
 public class RegisterServlet extends HttpServlet {
 
 	@Override

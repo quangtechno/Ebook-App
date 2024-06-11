@@ -7,10 +7,33 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored="false"%>
+<%@include file="all_component/allCss.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+</style>
+<% 
+ 
+    String toastType = (String) session.getAttribute("toastType");
+    String toastMessage = (String) session.getAttribute("toastMessage");
+    //System.out.println(toastType + " " + toastMessage);
+%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Toastr -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<!-- Styles -->
+	<style type="text/css">
+		body {background: whitesmoke;text-align: center;}
+		button{background-color: darkslategrey;color: white;border: 0;font-size: 18px;font-weight: 500;border-radius: 7px;padding: 10px 10px;cursor: pointer;white-space: nowrap;}
+		#success{background: green;}
+		#error{background: red;}
+		#warning{background: coral;}
+		#info{background: cornflowerblue;}
+		#question{background: grey;}
+	</style>
+
 <title>Cart Page</title>
 
 	<!-- Styles -->
@@ -22,21 +45,19 @@
 	<c:if test="${ empty userObj}">
 		<c:redirect url="login.jsp"></c:redirect>
 	</c:if>
-<%-- 	<c:if test="${not empty succMsg }"> --%>
-<%-- 		<div class="alert alert-success" role="alert">${succMsg}</div> --%>
-<%-- 		<c:remove var="succMsg" scope="session" /> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty failedMsg }"> --%>
-<%-- 		<div class="alert alert-danger" role="alert">${failedMsg}</div> --%>
-<%-- 		<c:remove var="succMsg" scope="session" /> --%>
-<%-- 	</c:if> --%>
-	<% 
-    String toastType = (String) request.getAttribute("toastType");
-    String toastMessage = (String) request.getAttribute("toastMessage");
-    System.out.println(toastType + " " + toastMessage);
-%>
 
-
+<%
+	User user = (User) session.getAttribute("userObj");
+System.out.println(session.getId());
+	%>   <% String name = (user.getName() != null && !user.getName().isBlank()) ? user.getName() : "";
+    String email = (user.getEmail()!= null && !user.getEmail().isBlank()) ? user.getEmail() : "";
+    String phone = (user.getPhone()!= null && !user.getPhone().isBlank()) ? user.getPhone() : "";
+    String address = (user.getAddress()!= null && !user.getAddress().isBlank()) ? user.getAddress() : "";
+    String city = (user.getCity()!= null && !user.getCity().isBlank()) ? user.getCity() : "";
+    String province= (user.getProvince()!= null && !user.getProvince().isBlank()) ? user.getProvince() : "";
+    String ZipNumber = (user.getZip()!= null && !user.getZip().isBlank()) ? user.getZip() : "";	
+    System.out.println(user.toString());
+ %>
 	<div class="container">
 		<div class="row p-2">
 			<div class="col-md-6">
@@ -56,7 +77,7 @@
 
 							<tbody>
 								<%
-								User user = (User) session.getAttribute("userObj");
+								
 								CartDAOImpl dao = new CartDAOImpl(DBConnect.getCon());
 								List<Cart> cartList = dao.getBookByUserId(user.getId());
 								Double totalPrice = 0.0;
@@ -94,39 +115,40 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label>Name</label> <input type="text" class="form-control"
-										id="inputEmail4" value="${userObj.name }"name="uName" required/>
+										id="inputEmail4" value="${userObj.name }"name="uName"readonly="readonly"/>
 								</div>
 								<div class="form-group col-md-6">
+								<input type="hidden" value="${userObj.password}" name="uPassword"/>
 									<label for="inputPassword4">Email</label> <input type="email"
 										class="form-control" id="inputPassword4"
-										value="${userObj.email}"name="uEmail" required/>
+										value="${userObj.email}"name="uEmail"  readonly="readonly"/>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Phone Number</label> <input
 										type="Text" class="form-control" id="inputEmail4"
-										value="${userObj.phone}" name="uPhone" required/>
+										value="${userObj.phone}" name="uPhone" readonly="readonly"/>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Address</label> <input type="text"
-										class="form-control" id="inputPassword4" name="uAddress" required/>
+										class="form-control" id="inputPassword4" name="uAddress" value="<%=address %>" required/>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Province</label> <input type="text"
-										class="form-control" id="inputEmail4" name="uProvince" required/>
+										class="form-control" id="inputEmail4" name="uProvince"value="<%=province %>" required/>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">City</label> <input type="text"
-										class="form-control" id="inputPassword4" name="uCity" required/>
+										class="form-control" id="inputPassword4" name="uCity"value="<%=city %>" required/>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Pin Code</label> <input
-										type="text" class="form-control" id="inputPassword4" name="uPin"
+										type="text" class="form-control" value="<%=ZipNumber %>" name="uPin"
 										>
 								</div>
 								<div class="form-group">
@@ -169,8 +191,8 @@ $(document).ready(function() {
 function isEmptyOrNullOrWhitespace(text) {
     return text === null || text === undefined || text.trim() === "";
 }
-var toastType = '<%= request.getAttribute("toastType") %>';
-var toastMessage = '<%= request.getAttribute("toastMessage") %>';
+var toastType = '<%= session.getAttribute("toastType") %>';
+var toastMessage = '<%= session.getAttribute("toastMessage") %>';
 if (!isEmptyOrNullOrWhitespace(toastMessage)) {
 if (toastType=='Success') {
 	toastr.success(toastMessage);
